@@ -52,18 +52,14 @@ Window.Game = {};
 
   // When the snake reaches a horizontal or vertical edge, wrap it around to the opposite edge
   function checkEdgeCollision() {
-    // Check horizontal edges
-    if (snake.x < 0) {
-      snake.x = canvas.width - CELL_SIZE;
-    } else if (snake.x >= canvas.width) {
-      snake.x = 0;
-    }
-
-    // Check vertical edges
-    if (snake.y < 0) {
-      snake.y = canvas.height - CELL_SIZE;
-    } else if (snake.y >= canvas.height) {
-      snake.y = 0;
+    // Check horizontal edges and vertical edges
+    if (
+      snake.x < 0 ||
+      snake.x >= canvas.width ||
+      snake.y < 0 ||
+      snake.y >= canvas.height
+    ) {
+      resetGame();
     }
   }
 
