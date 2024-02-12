@@ -84,6 +84,7 @@ Window.Game = {};
   function resetScore() {
     score = 0;
     frameCounterLimit = 40;
+    snake.color = "green";
     updateScore();
   }
 
@@ -98,8 +99,19 @@ Window.Game = {};
     // Update the score text
     updateScore();
 
+    // Change the snake's color to a lighter shade
+    snake.color = generateRandomColor();
+
     // Place a new apple on a random location in the canvas
     randomizeApple();
+  }
+
+  // Create lighter shades of colors
+  function generateRandomColor() {
+    const red = Math.floor(Math.random() * (256 - 100) + 100);
+    const green = Math.floor(Math.random() * (256 - 100) + 100);
+    const blue = Math.floor(Math.random() * (256 - 100) + 100);
+    return ("#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1));
   }
 
   // Handles movement, collision and drawing of the snake
