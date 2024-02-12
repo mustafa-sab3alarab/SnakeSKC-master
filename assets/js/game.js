@@ -83,6 +83,7 @@ Window.Game = {};
 
   function resetScore() {
     score = 0;
+    frameCounterLimit = 40;
     updateScore();
   }
 
@@ -90,6 +91,9 @@ Window.Game = {};
   function eatApple() {
     // Increase the snake's length
     snake.length++;
+
+    // Increase the snack's speed
+    frameCounterLimit -= 5;
 
     // Update the score text
     updateScore();
