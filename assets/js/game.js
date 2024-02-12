@@ -94,7 +94,7 @@ Window.Game = {};
     snake.length++;
 
     // Increase the snack's speed
-    frameCounterLimit -= 5;
+    frameCounterLimit -= 1;
 
     // Update the score text
     updateScore();
@@ -111,7 +111,10 @@ Window.Game = {};
     const red = Math.floor(Math.random() * (256 - 100) + 100);
     const green = Math.floor(Math.random() * (256 - 100) + 100);
     const blue = Math.floor(Math.random() * (256 - 100) + 100);
-    return ("#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1));
+    return (
+      "#" +
+      ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)
+    );
   }
 
   // Handles movement, collision and drawing of the snake
