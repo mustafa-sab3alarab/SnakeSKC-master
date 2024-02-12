@@ -137,7 +137,7 @@ Window.Game = {};
 
   // Updates the score text
   function updateScore() {
-    scoreText.textContent = "Score: " + score;
+    scoreText.textContent = "Score: " + score++;
   }
 
   // Draws the apple on the screen
