@@ -60,7 +60,6 @@ Window.Game = {};
       snake.y >= canvas.height
     ) {
       resetGame();
-      GameOver();
     }
   }
 
