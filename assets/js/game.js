@@ -85,6 +85,8 @@ Window.Game = {};
     score = 0;
     frameCounterLimit = 40;
     snake.color = "green";
+    apple.isGolden = false;
+    apple.color = "red";
     updateScore();
   }
 
@@ -96,13 +98,31 @@ Window.Game = {};
     // Increase the snack's speed
     frameCounterLimit -= 1;
 
-    // Update the score text
-    updateScore();
-
     // Change the snake's color to a lighter shade
     snake.color = generateRandomColor();
 
-    // Place a new apple on a random location in the canvas
+    if (apple.isGolden) {
+      updateScore(5);
+      apple.isGolden = false;
+    } else {
+      updateScore(1);
+    }
+
+    // Appearance of Golden apple in the game. It has a 10% chance to
+    var goldenAppleChance = Math.random();
+
+    if (goldenAppleChance < 0.1) {
+      goldenAppleApperance();
+    } else {
+      apple.color = "red";
+      randomizeApple();
+    }
+  }
+
+  function goldenAppleApperance() {
+    let goldenColor = "rgb(255, 215, 0)";
+    apple.isGolden = true;
+    apple.color = goldenColor;
     randomizeApple();
   }
 
@@ -155,8 +175,11 @@ Window.Game = {};
   }
 
   // Updates the score text
-  function updateScore() {
-    scoreText.textContent = "Score: " + score++;
+  function updateScore(points = 0) {
+    console.log(`Updating score by ${points}. Current score: ${score}`);
+    score += points;
+    scoreText.textContent = "Score: " + score;
+    console.log(`New score: ${score}`);
   }
 
   // Draws the apple on the screen
